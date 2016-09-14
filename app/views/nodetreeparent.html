@@ -1,0 +1,19 @@
+<div class="tree-holder">
+  <div class="text-holder">
+    <h2>{{parent.choice}}</h2>
+    <p>{{parent.text}}<p>
+  </div>
+  <div class="row center options-holder">
+    <div ng-class="'col-sm-' + colClass(filteredKids.length + 1)" ng-repeat="bb in filteredKids = (parent.choices | orderBy:reads | limitTo:3)">
+      <div class="down-branch btn btn-default btn-block" ng-click="ntpCtrl.showKids(bb, $event)">
+        {{bb.choice}}
+      </div>
+    </div>
+    <div ng-class="'col-sm-' + colClass(filteredKids.length+1)">
+      <div class="down-branch btn btn-info btn-block" ng-click="ntpCtrl.moreChoices(parent, $event)">
+        <span class="glyphicon glyphicon-plus"></span>
+      </div>
+    </div>
+  </div>
+  <div class="childholder"></div>
+</div>

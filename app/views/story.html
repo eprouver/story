@@ -1,0 +1,72 @@
+<div>
+  <node-tree-parent class="animated slideInRight" ng-if="parent"></node-tree-parent>
+
+  <div ng-if="!parent">
+    <div class="btn btn-success btn-block btn-lg" onclick="$('#add-choice').modal('show')">Start</div>
+  </div>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
+  <div class="modal" id="all-choices" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3>Newest Choices</h3>
+          <div class="row">
+            <div class="col-xs-3" ng-repeat="bb in story.currentBB.choices | orderBy:'creation'" data-dismiss="modal" ng-click="story.chooseAnother(bb)">
+              <div class="btn btn-primary btn-block">{{bb.choice}}</div>
+            </div>
+          </div>
+          <h3>Most Popular</h3>
+          <div class="row">
+            <div class="col-xs-3" ng-repeat="bb in (story.currentBB.choices | orderBy:'reads').slice(3)" data-dismiss="modal" ng-click="story.chooseAnother(bb)">
+              <div class="btn btn-primary btn-block">{{bb.choice}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn btn-block btn-lg btn-success" data-dismiss="modal" onclick="$('#add-choice').modal('show')">Add a Choice</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="add-choice" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="text-holder">
+            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h2>{{parent.choice}}</h2>
+            <p>{{parent.text}}</p>
+          </div>
+          <div class="well down-branch">
+            <div class="form-group">
+              <label>Choice:</label>
+              <input ng-model="story.newChoice" class="form-control" placeholder="What does the character do?" type="text"/>
+            </div>
+            <br/>
+            <div class="form-group">
+              <label>Result:</label>
+              <textarea ng-model="story.newText" class="form-control" cols="40" placeholder="What happens next?" rows="8"></textarea>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="btn btn-block btn-lg btn-success" data-dismiss="modal" ng-click="story.addChoice()">Add It!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

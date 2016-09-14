@@ -1,0 +1,155 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+$bkg : #fff;
+$text-bkg: #ccc;
+$connection: #444;
+
+.tree-holder{
+  transform-origin: 50% 50%;
+  animation: zoomIn 1s ease;
+}
+
+.text-holder{
+  background: $text-bkg;
+  border: 0.2em solid $connection;
+  padding: 2em 3em;
+  border-radius: 1em;
+
+  h2{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0.5em;
+  }
+
+  p{
+    line-height: 2em;
+    &:first-letter{
+      font-size: 2.2em;
+      color: $connection;
+      font-weight: bold;
+    }
+  }
+
+}
+
+.options-holder {
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.btn {
+  border-radius: 2em;
+  border: none;
+}
+
+.btn-success {
+  font-size: 2em;
+}
+
+.down-branch {
+  margin-top: 1em;
+  border-width: 2px;
+  border: 0.2em solid $connection;
+  position:relative;
+  border-radius: 1em;
+
+  span{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.down-branch:before {
+  content: '';
+  position: absolute;
+  height: 1.2em;
+  background: $connection;
+  width: 2px;
+  left: 50%;
+  top: -1.3em;
+}
+
+@media( min-width: $screen-sm){
+  .selected .down-branch {
+    width: 4.5em;
+    padding: 0;
+    color: transparent;
+    border-right: none;
+    border-top: none;
+    left: 50%;
+    height: 4.5em;
+    border-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    pointer-events: none;
+    background: $connection;
+    margin-top: 0;
+    position: relative;
+    margin-left: -1.25em;
+    animation: slideInDown 1s ease;
+    z-index: -1;
+
+    &:before {
+      content: '';
+      position: absolute;
+      height: 4.5em;
+      background: $bkg;
+      width: 4.5em;
+      left: 50%;
+      top: 0;
+      border-radius: 5em;
+      margin-left: -5em;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      height: 4.5em;
+      background: $bkg;
+      width: 4.5em;
+      left: 50%;
+      top: 0;
+      border-radius: 5em;
+      margin-left: 0em;
+    }
+  }
+
+}
+
+@media( max-width: $screen-sm){
+  .selected .down-branch{
+    background: #444;
+    color: white;
+    margin-bottom: 1em;
+
+    &:after {
+      content: '';
+      position: absolute;
+      height: 1.2em;
+      background: $connection;
+      width: 2px;
+      left: 50%;
+      bottom: -1.3em;
+    }
+  }
+
+  .choice > div:not(.selected){
+    display:none;
+  }
+}
+
+.options-holder:not(.choice) + .childholder{
+  display:none;
+}
+
+.btn-info {
+  border-color: #5bc0de;
+}
+
+.swing {
+  animation-delay: 0.85s;
+}
